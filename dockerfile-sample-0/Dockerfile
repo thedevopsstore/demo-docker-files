@@ -1,12 +1,8 @@
-from centos:7
-
-## install apache
-RUN yum install httpd -y
-
-## expose the port on the container
-EXPOSE 8080
-
-## execute the start command for apche in the foreground
-#CMD tail -f /dev/null
-CMD ["/bin/bash", "/usr/sbin/apachectl", "-DFOREGROUND"]
+FROM ubuntu 
+RUN apt-get update 
+RUN apt-get install apache2 -y
+RUN apt-get install apache2-utils -y
+RUN apt-get clean 
+EXPOSE 80 
+CMD ["apache2ctl", "-D", "FOREGROUND"]
 
